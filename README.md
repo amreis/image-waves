@@ -9,5 +9,5 @@ http://www.fftw.org/download.html
 
 How to Contribute
 ===========
-Start by Cloning the repository, the clone URL should be somewhere around here -> \\
+Start by Cloning the repository, the clone URL should be somewhere around here -> \n
 When you feel like contributing, submit a pull request.
