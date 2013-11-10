@@ -1,3 +1,4 @@
 # Ignore gedit temp files (files ending with ~)
 *.*~
+# Ignore Qt Creator's build folder
 build-*
