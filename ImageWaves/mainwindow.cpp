@@ -1,10 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "imagehandler.h"
 
-#include <QFileDialog>
 
-const QString MainWindow::SUPPORTED_FORMATS =
-    "JPEG (*.jpg *.jpeg);; Bitmap (*.bmp);; PNG (*.png);; All files (*.*)";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,29 +19,15 @@ MainWindow::~MainWindow()
 void MainWindow::on_loadButton_clicked()
 {
     QString filename;
-    filename = getImageLocation();
+    filename = ImageHandler::getImageLocation();
     QImage image;
     if (filename != NULL)
     {
-        image = loadImage(filename);
+        image = ImageHandler::loadImage(filename);
         showLoadedImage(image);
     }
 }
 
-QString MainWindow::getImageLocation()
-{
-    QString filename = QFileDialog::getOpenFileName(
-                this,
-                "Open",
-                NULL,
-                SUPPORTED_FORMATS);
-    return filename;
-}
-
-QImage MainWindow::loadImage(QString filename)
-{
-    return QImage(filename);
-}
 
 void MainWindow::showLoadedImage(QImage image)
 {
