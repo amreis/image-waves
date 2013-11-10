@@ -1,2 +1,3 @@
 # Ignore gedit temp files (files ending with ~)
 *.*~
+build-*
