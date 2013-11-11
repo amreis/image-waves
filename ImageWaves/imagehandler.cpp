@@ -1,7 +1,5 @@
 #include "imagehandler.h"
 
-
-
 const QString ImageHandler::SUPPORTED_FORMATS =
     "JPEG (*.jpg *.jpeg);; Bitmap (*.bmp);; PNG (*.png);; All files (*.*)";
 
