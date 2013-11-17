@@ -1,4 +1,5 @@
 #include "imagehandler.h"
+#include <QRgb>
 
 const QString ImageHandler::SUPPORTED_FORMATS =
     "JPEG (*.jpg *.jpeg);; Bitmap (*.bmp);; PNG (*.png);; All files (*.*)";
@@ -31,13 +32,13 @@ char* ImageHandler::getSingleValuePerPixel(QImage image)
 	{
 		transformToGrayscale(&image);
 	}
-	char *values = (char*) malloc(image.width() * image.height() * sizeof(char));
+    char *values = new char[image.width() * image.height()];
 	
 	for (int i = 0; i < image.height(); i ++)
 	{
 		for (int j = 0; j < image.width(); j++)
 		{
-			values[i*image.width() + j] = image.pixel(i,j).red();
+            values[i*image.width() + j] = qRed(image.pixel(i,j));
 		}
 	}
 	return values;
@@ -49,11 +50,13 @@ void ImageHandler::transformToGrayscale(QImage *image)
 	{
 		for (int j = 0; j < image->width(); j++)
 		{
+
 			QRgb px = image->pixel(i,j);
+
 			// L = 0.299*R + 0.587*G + 0.114*B
-			int luminance = 0.299 * px.red() + 0.587 * px.green() +
-				0.114 * px.blue();
-			px.setRed(luminance); px.setGreen(luminance); px.setBlue(luminance);
+            int luminance = 0.299 * qRed(px) + 0.587 * qGreen(px) +
+                0.114 * qBlue(px);
+            px = qRed(luminance) + qGreen(luminance) + qBlue(luminance) + qAlpha(255);
 			image->setPixel(i, j, px);
 		}
 	}

@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    imagehandler.cpp
+    imagehandler.cpp \
+    ffthandler.cpp
 
 HEADERS  += mainwindow.h \
-    imagehandler.h
+    imagehandler.h \
+    ffthandler.h
+
+LIBS += -lfftw3 -lm
 
 FORMS    += mainwindow.ui
